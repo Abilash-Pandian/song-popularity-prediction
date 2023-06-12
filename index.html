@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Song Popularity Prediction</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      background-image: url("{{ url_for('static', filename='bg.jpeg') }}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      border-radius: 10px;
+      border-color: #000500;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: transparent;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+      color: #604caf;
+      text-shadow: #000500;
+    }
+
+    h1 {
+      text-align: center;
+      text-shadow: #000500;
+      color: rgb(16, 237, 0);
+      border-radius: 10px;
+      border-color: #000500;
+    }
+
+    .title {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: #1ddf1d;
+      font-size: 24px;
+    }
+
+    .description {
+      margin-top: 20px;
+      text-align: center;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7); /* Add the desired background color here */
+      padding: 10px;
+      border-radius: 5px;
+    }
+    
+    .description a {
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    .description p {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">Ratify</h1>
+    <div class="description">
+      <p>Ratify is a web app where you can find the popularity of your favorite songs. You can use the features such as song duration, acousticness, danceability, energy, instrumentalness, key, liveness, loudness, audio mode, speechiness, tempo, time signature, and audio valence. To access these features, you can visit <a href="https://developer.spotify.com/" target="_blank">https://developer.spotify.com/</a>. Enter the values for these features and click "Predict Popularity" to get the predicted popularity of your favorite song.</p>
+    </div>
+    <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Logo" class="logo">
+    <form action="{{ url_for('predict') }}" method="post">
+      <input type="text" name="song_duration" placeholder="Song Duration (seconds)" required>
+      <input type="text" name="acousticness" placeholder="Acousticness" required>
+      <input type="text" name="danceability" placeholder="Danceability" required>
+      <input type="text" name="energy" placeholder="Energy" required>
+      <input type="text" name="instrumentalness" placeholder="Instrumentalness" required>
+      <input type="text" name="key" placeholder="Key" required>
+      <input type="text" name="liveness" placeholder="Liveness" required>
+      <input type="text" name="loudness" placeholder="Loudness" required>
+      <input type="text" name="audio_mode" placeholder="Audio Mode" required>
+      <input type="text" name="speechiness" placeholder="Speechiness" required>
+      <input type="text" name="tempo" placeholder="Tempo" required>
+      <input type="text" name="time_signature" placeholder="Time Signature" required>
+      <input type="text" name="audio_valence" placeholder="Audio Valence" required>
+      <button type="submit">Predict Popularity</button>
+    </form>
+    {% if prediction_text %}
+    <div class="result">
+      <h3>Prediction: {{ prediction_text }}</h3>
+    </div>
+    {% endif %}
+
+    <div class="contact">
+      <p>Contact Developer:</p>
+      <p>Email: teamratify@gmail.com</p>
+      <p>Phone: 63696-25511</p>
+    </div>
+  </div>
+</body>
+</html>
